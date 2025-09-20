@@ -69,10 +69,12 @@ class Me:
         detailed_key = os.getenv("DETAILED_KEY")  # hero_detailed.pdf
 
         # Load summary TXT
-        summary = s3.get_object(Bucket=bucket, Key=summary_key)["Body"].read().decode("utf-8")
+        summary_obj = s3.get_object(Bucket=bucket, Key=summary_key)
+        summary = summary_obj["Body"].read().decode("utf-8")
 
         # Load detailed PDF
-        pdf_bytes = BytesIO(s3.get_object(Bucket=bucket, Key=detailed_key)["Body"].read())
+        pdf_obj = s3.get_object(Bucket=bucket, Key=detailed_key)
+        pdf_bytes = BytesIO(pdf_obj["Body"].read())
         reader = PdfReader(pdf_bytes)
         for page in reader.pages:
             text = page.extract_text()
@@ -80,7 +82,6 @@ class Me:
                 detailed += text
 
         return detailed, summary
-
 
 
     def system_prompt(self):
