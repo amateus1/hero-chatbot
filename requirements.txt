@@ -1,0 +1,10 @@
+streamlit
+python-dotenv
+pypdf
+resend
+requests
+openai
+boto3
+streamlit-webrtc
+Markdown>=3.6
+

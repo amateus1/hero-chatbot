@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local dev/testing
+test_resend.py
+backup_before_recovery/
+backups/
+*.bak
+
+# VS Code Dev Container
+.devcontainer/
+
+# Streamlit secrets & env
+.streamlit/secrets.toml
+.env
+*.env
+
+# KB
+kb/
