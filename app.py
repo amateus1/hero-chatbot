@@ -56,6 +56,9 @@ language_options = {
             "如果你只想听有趣的事 — 没问题！我会告诉你关于挠肚子、埋骨头，或者三条腿狗狗去土耳其旅行的经历。🌍🐾"
         ),
         "input_placeholder": "问 Hero 点什么吧…",
+        "consult_prompt": "💡 如果您希望 Hero 团队联系您，请在下方留下邮箱。聊天仍将继续。",
+        "consult_input": "📧 您的邮箱（可选）",
+        "consult_success": "✅ 感谢！Hero 团队已经收到通知，很快会与您联系。"
     },
     "English": {
         "title": "🐶 Meet Hero — Canine Model & Brand Ambassador",
@@ -67,6 +70,9 @@ language_options = {
             "And if you just want the fun stuff — yes, I’ll happily tell you about belly rubs, hiding bones, or what it’s like to travel to Turkey on three legs. 🌍🐾"
         ),
         "input_placeholder": "Ask Hero something...",
+        "consult_prompt": "💡 If you’d like Hero’s Team to reach out, please leave your email below. The chat will continue regardless.",
+        "consult_input": "📧 Your email (optional)",
+        "consult_success": "✅ Thanks! Hero’s Team has been notified and will reach out soon."
     }
 }
 
