@@ -57,39 +57,30 @@ class Me:
         summary = ""
         detailed = ""
 
-        if os.getenv("S3_BUCKET"):
-            import boto3
-            s3 = boto3.client(
-                "s3",
-                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-                region_name=os.getenv("AWS_REGION"),
-            )
-            bucket = os.getenv("S3_BUCKET")
-            summary_key = os.getenv("SUMMARY_KEY")  # should point to hero_summary.txt
-            detailed_key = os.getenv("DETAILED_KEY")  # should point to hero_detailed.pdf
+        import boto3
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            region_name=os.getenv("AWS_REGION"),
+        )
+        bucket = os.getenv("S3_BUCKET")
+        summary_key = os.getenv("SUMMARY_KEY")  # hero_summary.txt
+        detailed_key = os.getenv("DETAILED_KEY")  # hero_detailed.pdf
 
-            # Load summary TXT
-            summary = s3.get_object(Bucket=bucket, Key=summary_key)["Body"].read().decode("utf-8")
+        # Load summary TXT
+        summary = s3.get_object(Bucket=bucket, Key=summary_key)["Body"].read().decode("utf-8")
 
-            # Load detailed PDF
-            pdf_bytes = BytesIO(s3.get_object(Bucket=bucket, Key=detailed_key)["Body"].read())
-            reader = PdfReader(pdf_bytes)
-            for page in reader.pages:
-                text = page.extract_text()
-                if text:
-                    detailed += text
-        else:
-            # Local fallback
-            with open("hero_summary.txt", "r", encoding="utf-8") as f:
-                summary = f.read()
-            reader = PdfReader("hero_detailed.pdf")
-            for page in reader.pages:
-                text = page.extract_text()
-                if text:
-                    detailed += text
+        # Load detailed PDF
+        pdf_bytes = BytesIO(s3.get_object(Bucket=bucket, Key=detailed_key)["Body"].read())
+        reader = PdfReader(pdf_bytes)
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                detailed += text
 
         return detailed, summary
+
 
 
     def system_prompt(self):
