@@ -80,6 +80,8 @@ class Me:
             text = page.extract_text()
             if text:
                 detailed += text
+        print("DEBUG length of detailed biography:", len(detailed))
+
 
         return detailed, summary
 
